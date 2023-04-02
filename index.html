@@ -1,14 +1,59 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta charset="utf-8">
+    <title>News Summary</title>
+    <style>
+      body {
+        background-color: #111;
+        color: #fff;
+        font-family: 'Arial', sans-serif;
+      }
 
-    <title>My web page</title>
+      h1 {
+        font-size: 36px;
+        margin-bottom: 20px;
+      }
+
+      .news_list {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+      }
+
+      .news_item {
+        border-bottom: 1px solid #444;
+        margin-bottom: 20px;
+        padding-bottom: 20px;
+      }
+
+      .news_item:last-of-type {
+        border-bottom: none;
+        margin-bottom: 0;
+        padding-bottom: 0;
+      }
+
+      .news_item a {
+        color: #fff;
+        display: block;
+        font-size: 24px;
+        text-decoration: none;
+        transition: color 0.2s ease;
+      }
+
+      .news_item:hover {
+        color: #ccc;
+      }
+
+      .news_item p {
+        font-size: 16px;
+        margin-top: 10px;
+      }
+    </style>
   </head>
   <body>
-  <script type="text/javascript" src="bundle.js"></script>
-
+    <h1>Today's Headlines</h1>
+    <ul id="headlines-container"></ul>
+    <script type="text/javascript" src="bundle.js"></script>
   </body>
 </html>
