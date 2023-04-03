@@ -6,4 +6,4 @@ const newsModel = new NewsModel();
 const newsClient = new NewsClient();
 const newsView = new NewsView(newsModel, newsClient);
 
-newsView.displayNotesFromApi();
+newsView.displayNewsFromApi();

@@ -3,13 +3,20 @@ class NewsModel {
     this.headlines = null;
   }
 
+  getHeadlines() {
+    return this.headlines;
+  }
+
   setHeadlines(headlines) {
     this.headlines = headlines;
   }
 
-  getHeadlines() {
-    return this.headlines;
+  addNews(headlines) {
+    this.headlines.push(headlines);
+  }
+
+  reset() {
+    this.headlines = null;
   }
 }
-
 module.exports = NewsModel;

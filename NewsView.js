@@ -2,41 +2,34 @@ const NewsModel = require('./NewsModel');
 const NewsClient = require('./NewsClient');
 
 class NewsView {
-  constructor() {
+  constructor(model, client) {
     this.headlinesContainer = document.getElementById('headlines-container');
     this.errorMessage = 'Failed to fetch headlines.';
-    this.model = new NewsModel();
-    this.client = new NewsClient();
+    this.model = model;
+    this.client = client;
   }
 
   displayNews() {
-    const allHeadlines = this.model.getHeadlines();
+    const { response: { results } } = this.model.getHeadlines();
+    const newsList = document.querySelector('.news_list');
   
-    const headlinesList = document.createElement('ul');
-    headlinesList.className = 'news_list';
-    
-    allHeadlines.response.results.forEach((result) => {
-      const headlineEl = document.createElement('li');
-      headlineEl.textContent = result.webTitle;
-      headlineEl.className = 'news_item';
-      headlinesList.appendChild(headlineEl);
+    results.forEach(article => {
+      const newsItem = document.createElement('li');
+      newsItem.classList.add('news_item');
+      newsItem.innerHTML = article.webTitle;
+  
+      newsList.appendChild(newsItem);
     });
-    
-    this.headlinesContainer.appendChild(headlinesList);
   }
-  //   const headlinesHtml = headlines.map((item) => `<li>${item}</li>`).join('');
-  //   const newsSummaryContainer = document.createElement('ul');
-  //   newsSummaryContainer.className = 'news_summary';
-  //   newsSummaryContainer.innerHTML = headlinesHtml;
-  //   this.headlinesContainer.appendChild(newsSummaryContainer);
-  // }
 
-  displayNotesFromApi() {
+  displayNewsFromApi() {
     this.client.loadNews((news) => {
       this.model.setHeadlines(news);
       this.displayNews();
+      successCallback(); // call success callback
     }, () => {
       this.renderError();
+      errorCallback(); // call error callback
     });
   }
 
